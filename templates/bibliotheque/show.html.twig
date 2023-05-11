@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotheque{% endblock %}
+
+{% block body %}
+    <h1>Bibliotheque</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bibliotheque.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ bibliotheque.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Domaine</th>
+                <td>{{ bibliotheque.domaine }}</td>
+            </tr>
+            <tr>
+                <th>Nbetage</th>
+                <td>{{ bibliotheque.nbetage }}</td>
+            </tr>
+            <tr>
+                <th>Nbrayon</th>
+                <td>{{ bibliotheque.nbrayon }}</td>
+            </tr>
+            {% for livre in bibliotheque.getLivre() %}
+                <tr>
+                    <th> </th>
+
+
+                    <td>
+                        <a href="{{ path('app_livre_show', {'id': livre.id}) }}" >{{ livre }}</a>
+
+
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bibliotheque_index') }}">back to list</a>
+
+    <a href="{{ path('app_bibliotheque_edit', {'id': bibliotheque.id}) }}">edit</a>
+
+    {{ include('bibliotheque/_delete_form.html.twig') }}
+{% endblock %}
